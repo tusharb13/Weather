@@ -9,7 +9,6 @@ function App() {
   return (
     <div
       className="App AppBackground"
-      style={{ fontFamily: "monochrome", color: "white" }}
     >
       <Navigation></Navigation>
       <Weather></Weather>

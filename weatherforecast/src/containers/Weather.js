@@ -16,14 +16,12 @@ const Weather = () => {
   const selectedButton = useSelector((state) => state.selectedButton);
 
   const dispatch = useDispatch();
-
-  let dailyWeather = null;
-
-  dailyWeather = loading ? (
-    <Spinner></Spinner>
-  ) : !error && list ? (
+  const loadingCondition = loading;
+  const loadingConditionTrue = <Spinner></Spinner>;
+  const errorCondition = !error && list;
+  const errorConditionFalse = (
     <React.Fragment>
-      <DailyWeather list={list} date={date} city={city}/>
+      <DailyWeather list={list} date={date} city={city} />
       <WeeklyWeather
         list={list}
         city={city}
@@ -41,8 +39,13 @@ const Weather = () => {
         }
       ></WeeklyWeather>
     </React.Fragment>
-  ) : null;
-
+  );
+  let dailyWeather = null;
+  if (loadingCondition) {
+    dailyWeather = loadingConditionTrue;
+  } else if (!loadingCondition && errorCondition) {
+    dailyWeather = errorConditionFalse;
+  }
   return (
     <div>
       <Search
