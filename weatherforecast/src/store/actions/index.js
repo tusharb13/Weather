@@ -1,0 +1,1 @@
+export {fetchWeatherData, setDailyWeatherFromWeek, setCity} from './weather';

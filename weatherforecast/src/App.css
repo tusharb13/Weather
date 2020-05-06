@@ -24,6 +24,19 @@
   color: white;
 }
 
+.AppBackground {
+    content: "";
+    position : fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-image: url('./assets/2850815.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
 .App-link {
   color: #61dafb;
 }
