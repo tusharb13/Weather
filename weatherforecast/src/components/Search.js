@@ -3,10 +3,10 @@ import React from "react";
 import PlacesAutocomplete from "react-places-autocomplete";
 
 const Search = (props) => {
-  const handleSelect = (address) => {
-    console.log(address.split(",")[0]);
-    if (address.split(",")[0].toLowerCase() === props.city.toLowerCase())
-      props.onSearchCity(address.split(",")[0]);
+  const handleSelect = address => {
+    const cityFromFullAddress = address.split(',')[0];
+    if(cityFromFullAddress.toLowerCase() === props.city.toLowerCase())
+    props.onSearchCity(cityFromFullAddress)
   };
   
   return (

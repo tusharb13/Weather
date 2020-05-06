@@ -1,0 +1,22 @@
+.min {
+    color: blue;
+    padding-right: 10px;
+    font-size: larger;
+  }
+  
+  .max {
+    color: red;
+    font-size: larger;
+  }
+  
+  .selected {
+      border-radius: 1.25rem;
+      border: 1px double rgb(226, 193, 220);
+       background:lightsteelblue
+  }
+  
+  .notSelected {
+      border-radius: 1.25rem;
+      border: 1px double rgb(226, 193, 220);
+      background:white
+  }

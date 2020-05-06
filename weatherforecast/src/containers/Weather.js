@@ -6,27 +6,38 @@ import * as actions from "../store/actions/index";
 import Spinner from "../components/UI/Spinner/Spinner";
 import WeeklyWeather from "../components/WeeklyWeather/weeklyWeather";
 
-
 class Weather extends Component {
-
-
   render() {
-    
-    let dailyWeather = null;
-    
-    dailyWeather = this.props.loading ? (
-      <Spinner></Spinner>
-    ) : !this.props.error && this.props.list ? (
+    const loadingCondition = loading;
+    const loadingConditionTrue = <Spinner></Spinner>;
+    const errorCondition = !error && list;
+    const errorConditionFalse = (
       <React.Fragment>
-       
-        <DailyWeather
-          {...this.props}
-        />
+        <DailyWeather list={list} date={date} city={city} />
         <WeeklyWeather
-          {...this.props}
+          list={list}
+          city={city}
+          selectedButton={selectedButton}
+          onWeatherChange={(ctrl, cityName, maxTemp, minTemp, selectedButton) =>
+            dispatch(
+              actions.setDailyWeatherFromWeek(
+                ctrl,
+                cityName,
+                maxTemp,
+                minTemp,
+                selectedButton
+              )
+            )
+          }
         ></WeeklyWeather>
       </React.Fragment>
-    ) : null;
+    );
+    let dailyWeather = null;
+    if (loadingCondition) {
+      dailyWeather = loadingConditionTrue;
+    } else if (!loadingCondition && errorCondition) {
+      dailyWeather = errorConditionFalse;
+    }
 
     return (
       <div>
@@ -49,15 +60,24 @@ const mapStateToProps = (state) => {
     loading: state.loading,
     list: state.list,
     date: state.date,
-    selectedButton : state.selectedButton
+    selectedButton: state.selectedButton,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     onSearchCity: (city) => dispatch(actions.fetchWeatherData(city)),
-    onWeatherChange : (ctrl,cityName,maxTemp, minTemp, selectedButton) => dispatch(actions.setDailyWeatherFromWeek(ctrl,cityName,maxTemp,minTemp, selectedButton)),
-    handleCityChange : (city) => dispatch(actions.setCity(city))
+    onWeatherChange: (ctrl, cityName, maxTemp, minTemp, selectedButton) =>
+      dispatch(
+        actions.setDailyWeatherFromWeek(
+          ctrl,
+          cityName,
+          maxTemp,
+          minTemp,
+          selectedButton
+        )
+      ),
+    handleCityChange: (city) => dispatch(actions.setCity(city)),
   };
 };
 
