@@ -27,6 +27,7 @@ const addWeatherFromWeek = (state, action) => {
     description: action.response.weather[0].description,
     error: false,
     loading: false,
+    // date: days[new Date(action.response.dt_txt.split(" ")[0]).getDay()],
     date: action.response.dt_txt.split(" ")[0],
     selectedButton: action.selectedButton,
   };
@@ -44,6 +45,7 @@ const addWeatherSuccess = (state, action) => {
     error: false,
     loading: false,
     list: action.response.list,
+    //date: days[new Date(action.response.list[0].dt_txt.split(" ")[0]).getDay()],
     date: action.response.list[0].dt_txt.split(" ")[0],
   };
 };

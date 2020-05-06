@@ -3,7 +3,18 @@ import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
 const dailyWeather = (props) => {
-  const  renderGraph = (list, date) => {
+  return (
+    <div className="row justify-content-center">
+      <div className="Card">
+        <HighchartsReact
+          highcharts={Highcharts}
+          options={renderGraph(props.list, props.date)}
+        />
+      </div>
+    </div>
+  );
+
+  function renderGraph(list, date) {
     let arrayToPassInOptionsCelcius= []
     let arrayToPassInOptionsFarenhiet= [];
     let filterByDate = list.filter(
@@ -41,20 +52,6 @@ const dailyWeather = (props) => {
 
     return options;
   }
-
-  return (
-    <div className="row justify-content-center">
-      <div className="Card">
-        <HighchartsReact
-          highcharts={Highcharts}
-          options={renderGraph(props.list, props.date)}
-        />
-      </div>
-    </div>
-  );
-
-  
-  
 };
 
 export default dailyWeather;
